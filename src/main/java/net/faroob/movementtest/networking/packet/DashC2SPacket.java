@@ -5,6 +5,7 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.math.Vec3d;
 
 import javax.swing.text.html.parser.Entity;
 
@@ -13,6 +14,6 @@ public class DashC2SPacket {
         double pitch = player.getPitch();
         double yaw = player.getHeadYaw();
         player.velocityModified = true;
-        player.addVelocity(-Math.sin(Math.toRadians(yaw)), -Math.sin(Math.toRadians(pitch)), Math.cos(Math.toRadians(yaw)));
+        player.setVelocity(-Math.sin(Math.toRadians(yaw)) * Math.sin(Math.toRadians(pitch + 90)), -Math.sin(Math.toRadians(pitch)), Math.cos(Math.toRadians(yaw)) * Math.sin(Math.toRadians(pitch + 90)));
     }
 }
